@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Interactive card details form</title>
+
+  
+
+    
+
+</head>
+<body>
+ <img src="./images/bg-main-desktop.png" alt="bg-main" class="bg-main">
+ <div class="block">
+   <img src="./images/bg-card-front.png" alt="bg-card-front" class="bg-card-front"> 
+  </div>
+  <img src="./images/bg-card-back.png" alt="bg-card-back" class="bg-card-back">
+<div class="block1">
+  <img src="./images/card-logo.svg" alt="card-logo" class="card-logo">
+  <div class="cardNum">
+    <p id="pm1">0000</p>
+    <p id="pm2">0000</p>
+    <p id="pm3">0000</p>
+    <p id="pm4">0000</p>
+  </div>
+
+
+  <div class="flex">
+    <p class="p2" id="p2">
+      Jane Appleseed
+    </p>
+
+    <p class="p3" id="p3"> 
+      00
+    </p>
+    <p class="a">/</p>
+    <p id="yy" class="yy">00</p>
+  </div>
+  
+  
+</div>
+<p class="p4" id="CVC">
+  000
+</p>
+<form action="">
+<div class="block2" id="block2">
+ <p class="p5">
+ Cardholder Name
+</p>
+
+
+<input placeholder="e.g. Jane Appleseed"  class="inp1" type='text' id="name">
+<p style="color: red;" id="pError1"> </p>
+
+<p class="p6">
+  Card Number
+</p>
+ <input placeholder="e.g. 1234 5678 9123 0000" class="inp2" id="name1" type=text>
+ <p style="color: red;" id="pError2"></p>
+<div class="">
+  <div class="flex">
+    <p class="p7">
+      Exp. Date (MM/YY)
+    </p>
+    <p class="p8">
+      CVC
+    </p>
+  </div>
+  <div class="flex">
+    <input placeholder=" MM" class="inp3" id="name2" type=text>
+    <p id="pError3" style="color:red;" class="q" ></p>
+   <input placeholder="YY" class="inp4" id="name3" type=text>
+   <p id="pError4" style="color:red;" class="w"></p>
+   <input placeholder=" e.g. 123" class="inp5" id="name4"  type=text>
+      <p id="pError5" style="color: red;" class="t"  ></p>
+  </div>
+ <div class="btn">
+  <p class="p9" id="btn">
+    Confirm
+  </p>
+ </div>
+
+  
+
+</div>
+</div>
+</form>
+<div class="div3" id="div3"> 
+  <img src="./images/icon-complete.svg" alt="" class="img">
+  <p class="h">Thank You</p>
+  <p class="l">We've added your card details</p>
+  <p class="c1">Continue</p>
+ </div>
+
+
+
+ <script>
+
+ 
+ const button=document.getElementById('btn')
+  const name=document.getElementById("name");
+  const name1=document.getElementById("name1")
+  const name2=document.getElementById("name2")
+  const name3=document.getElementById("name3")
+  const name4=document.getElementById("name4")
+  const er1=document.getElementById("pError1")
+  const block2=document.getElementById('block2')
+  const updateName =()=>{
+    let val=name.value
+    if(name.value.length<1){
+      er1.innerHTML="Ism yozish shart!";
+    }else{
+      er1.innerHTML=""
+    }
+    document.getElementById("p2").innerHTML=val
+    
+
+  }
+  const updateNumber=()=>{
+    const er2=document.getElementById("pError2")
+    if(name1.value.length<16 || name1.value.length>16){
+      er2.innerHTML="16ti talik kodni yozshingiz shart!"}
+    else{
+        er2.innerHTML=""
+      }
+    let arr=[]
+    for(let i=0; i<16; i+=4){
+      arr.push(name1.value.slice(i,i+4))
+    }
+    document.getElementById('pm1').innerHTML=arr[0]
+    document.getElementById('pm2').innerHTML=arr[1]
+    document.getElementById('pm3').innerHTML=arr[2]
+    document.getElementById('pm4').innerHTML=arr[3]
+    
+  }
+const updateMonth=()=>{
+   document.getElementById("p3").innerHTML=name2.value
+   const er3=document.getElementById("pError3")
+    if(name2.value.length<2 || name2.value.length>2){
+      er3.innerHTML="Kartangizni Oyini yozing!"}
+    else{
+        er3.innerHTML=""
+      }
+}
+const updateYear=()=>{
+   document.getElementById("yy").innerHTML=name3.value
+   const er4=document.getElementById("pError4")
+    if(name3.value.length<2 || name3.value.length>2){
+      er4.innerHTML="Kartangizni Yilini yozing!"}
+    else{
+        er4.innerHTML=""
+    }
+  }
+const updateCVC=()=>{
+  document.getElementById("CVC").innerHTML=name4.value
+  const er5=document.getElementById("pError5")
+    if(name4.value.length<3 || name4.value.length>3){
+      er5.innerHTML="Kartangizni CVC kodini yozing!"}
+    else{
+        er5.innerHTML=""
+}
+}
+const div3=document.getElementById("div3")
+const shadower=()=>{
+  block2.style.display='none';
+  div3.style.opacity="1";
+}
+
+  name.addEventListener('input', updateName)
+  name1.addEventListener("input", updateNumber)
+  name2.addEventListener('input',updateMonth)
+  name3.addEventListener('input',updateYear)
+  name4.addEventListener('input',updateCVC)
+  button.addEventListener('click', shadower)
+
+ </script>
+</body>
+</html>
